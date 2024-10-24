@@ -87,9 +87,9 @@ void insertionSort(int *v)
     int i, j, aux;                  // variáveis para controle
     for (i = 1; i < QTD_ITENS; i++) // loop para percorrer o vetor
     {
-        aux = v[i];                  // guarda o elemento atual
-        j = i - 1;                   // define o elemento anterior ao atual
-        while (j >= 0 && v[j] > aux) // loop para percorrer o vetor a partir do elemento anterior ao atual
+        aux = v[i];                      // guarda o elemento atual
+        j = i - 1;                       // define o elemento anterior ao atual
+        while ((j >= 0) && (aux < v[j])) // loop para percorrer a parte ordenada do vetor
         {
             v[j + 1] = v[j]; // move o elemento para a direita
             j--;             // decrementa o contador
