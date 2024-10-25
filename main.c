@@ -43,6 +43,34 @@ void registrarTempo(const char *nome_funcao, double tempo_cpu) // função para 
     fclose(arq);
 }
 
+void heapify(int *v, int n, int i)
+{
+    int largest = i;          // Assume que o nó atual é o maior
+    int left = 2 * i + 1;     // Calcula o índice do filho à esquerda
+    int right = 2 * i + 2;    // Calcula o índice do filho à direita
+
+    // Verifica se o filho à esquerda é maior que o nó atual
+    if (left < n && v[left] > v[largest]) {
+        largest = left;
+    }
+
+    // Verifica se o filho à direita é maior que o maior nó encontrado até agora
+    if (right < n && v[right] > v[largest]) {
+        largest = right;
+    }
+
+    // Se o maior valor não está no nó atual, troca os valores
+    if (largest != i) {
+        int temp = v[i];
+        v[i] = v[largest];
+        v[largest] = temp;
+
+        // Chama recursivamente `heapify` para ajustar a subárvore
+        heapify(v, n, largest);
+    }
+}
+
+
 void medirTempo(void (*funcao)(int *), const char *nome) // função para medir o tempo de execução de uma função
 {
     int *v = copiarVetor(vetor); // copia o vetor global
