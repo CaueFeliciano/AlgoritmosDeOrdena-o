@@ -98,6 +98,49 @@ void insertionSort(int *v)
     }
 }
 
+// 3 - Bubble Sort
+// OBJETIVO: Repetidamente comparar elementos adjacentes e trocá-los se estiverem na ordem errada.
+void bubbleSort(int *v)
+{
+    int i, j, aux;                  // variáveis para controle
+    for (i = 0; i < QTD_ITENS - 1; i++) // loop para percorrer o vetor
+    {
+        for (j = 0; j < QTD_ITENS - i - 1; j++) // loop para percorrer o vetor
+        {
+            if (v[j] > v[j + 1]) // verifica se o elemento atual é maior que o próximo elemento
+            {
+                aux = v[j];  // guarda o elemento atual
+                v[j] = v[j + 1]; // troca o elemento atual com o próximo elemento
+                v[j + 1] = aux;  // troca o próximo elemento com o elemento atual
+            }
+        }
+    }
+}
+
+// 4 - Merge Sort
+
+
+// 5 - Quick Sort
+
+
+// 6 - Heap Sort
+// OBJETIVO: Transformar o vetor em uma árvore binária e ordená-la.
+void heapSort(int *v)
+{
+    int i, aux; // variáveis para controle
+    for (i = QTD_ITENS / 2 - 1; i >= 0; i--) // loop para percorrer o vetor
+    {
+        heapify(v, QTD_ITENS, i); // transforma o vetor em uma árvore binária
+    }
+    for (i = QTD_ITENS - 1; i > 0; i--) // loop para percorrer o vetor
+    {
+        aux = v[0]; // guarda o primeiro elemento
+        v[0] = v[i]; // troca o primeiro elemento com o último elemento
+        v[i] = aux; // troca o último elemento com o primeiro elemento
+        heapify(v, i, 0); // transforma o vetor em uma árvore binária
+    }
+}
+
 int main()
 {
     srand(time(NULL));                  // inicializa o gerador de números aleatórios
@@ -108,6 +151,8 @@ int main()
 
     medirTempo(selectionSort, "Selection Sort");
     medirTempo(insertionSort, "Insertion Sort");
+    medirTempo(bubbleSort, "Bubble Sort");
+    medirTempo(heapSort, "Heap Sort");
 
     return 0;
 }
